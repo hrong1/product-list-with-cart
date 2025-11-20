@@ -1,18 +1,36 @@
+import emptyCart from '../assets/images/illustration-empty-cart.svg';
 
 export interface productProps {
+    name: string
     thumbnail: string;
-    name: string;
     price: number;
-    number: 0;
+    number: number;
+}
+
+export interface productList {
+    productList: productProps[];
 }
 
 
 
-const DessertCard = ({ productProps }: productProps[]) => {
+const ShopCard = ({ productList }: productList) => {
+    const itemNumber = productList.reduce((total, product) => {
+        total += product.number
+        return total;
+    }, 0)
     return (
         <div>
+            <h3>Your Cart ({itemNumber})</h3>
+            {itemNumber !==0 ? (
+                <div>Item</div>
+            ) : (
+                <div>
+                    <img src={emptyCart} alt={''}/>
+                    <span>Your added item will appear here</span>
+                </div>
+            )}
         </div>
     )
 }
 
-export default DessertCard;
+export default ShopCard;
