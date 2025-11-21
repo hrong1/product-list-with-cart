@@ -1,37 +1,26 @@
-export interface DessertImage {
-    mobile: string;
-    tablet: string;
-    desktop: string;
-}
+import { type Product } from "./type";
 
-export interface DessertCardProps {
-    dessertImage: DessertImage;
-    name: string;
-    category: string;
-    price: number;
-}
-
-const DessertCard = ({ dessertImage, name, category, price }: DessertCardProps) => {
+const DessertCard = ({ product }: { product: Product }) => {
     return (
         <div>
             <picture>
                 <source
                 media="(min-width: 1024px)"
-                srcSet={dessertImage.desktop}
+                srcSet={product.image.desktop}
                 />
                 <source
                 media="(min-width: 768px)"
-                srcSet={dessertImage.tablet}
+                srcSet={product.image.tablet}
                 />
                 <img
-                src={dessertImage.mobile}
+                src={product.image.mobile}
                 alt=""
                 />
             </picture>
             <div>
-                <span>{category}</span>
-                <h5>{name}</h5>
-                <span>${price}</span>
+                <span>{product.category}</span>
+                <h5>{product.name}</h5>
+                <span>${product.price.toFixed(2)}</span>
             </div>
         </div>
     )

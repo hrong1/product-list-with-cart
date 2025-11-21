@@ -1,28 +1,46 @@
 import emptyCart from '../assets/images/illustration-empty-cart.svg';
-
-export interface productProps {
-    name: string
-    thumbnail: string;
-    price: number;
-    number: number;
-}
-
-export interface productList {
-    productList: productProps[];
-}
+import removeIcon from '../assets/images/icon-remove-item.svg'
+import { type Product } from "./type";
 
 
 
-const ShopCard = ({ productList }: productList) => {
+const ShopCard = ({ productList }: { productList: Product[] }) => {
     const itemNumber = productList.reduce((total, product) => {
-        total += product.number
-        return total;
-    }, 0)
+        return total + product.number;
+    }, 0);
+    const totalPrice = productList.reduce((total, product) => {
+        return total + (product.price * product.number);
+    }, 0);
     return (
         <div>
             <h3>Your Cart ({itemNumber})</h3>
             {itemNumber !==0 ? (
-                <div>Item</div>
+                productList.map(product => (
+                    <div key={product.name}>
+                        <div>
+                            <div>
+                                <h5>{product.name}</h5>
+                                <div>
+                                    <span>{product.number}×</span>
+                                    <span>@ ${product.price.toFixed(2)}</span>
+                                    <span>
+                                        {new Intl.NumberFormat('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD'
+                                        }).format(product.price * product.number)}
+                                    </span>
+                                </div>
+                                <button type='button' aria-label='remove product'>
+                                    <img src={removeIcon} alt=''/>
+                                </button>
+                            </div>
+                            <div>
+                                <span>Total</span>
+                                <span>{totalPrice}</span>
+                            </div>
+                        </div>
+                    </div>
+                ))
             ) : (
                 <div>
                     <img src={emptyCart} alt={''}/>
