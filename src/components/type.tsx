@@ -10,7 +10,7 @@ export interface Product {
     name: string;
     category: string;
     price: number;
-    number: number;
+    quantity: number;
 }
 
 const imageModules = import.meta.glob('../assets/images/*', 
@@ -41,7 +41,7 @@ function getData(): Product[] {
         name: element.name,
         category: element.category,
         price: element.price,
-        number: 0
+        quantity: 0
     }));
 }
 

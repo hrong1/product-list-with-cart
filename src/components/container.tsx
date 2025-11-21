@@ -5,16 +5,16 @@ import { useState } from "react";
 
 
 const Container = () => {
-    const dessertCardList: Product[] = getList();
-    const [cartItems, setCartItems] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Product[]>(getList());
+    const cartItems = products.filter(p => p.quantity > 0);
     return (
         <div>
             <h1>Desserts</h1>
             <div>
-                {dessertCardList.map(dessert => (
+                {products.map(product => (
                     <DessertCard 
-                        key={dessert.name}
-                        product={dessert}/>
+                        key={product.name}
+                        product={product}/>
                 ))}
             </div>
             <ShopCard productList={cartItems}/>

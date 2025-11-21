@@ -6,10 +6,10 @@ import { type Product } from "./type";
 
 const ShopCard = ({ productList }: { productList: Product[] }) => {
     const itemNumber = productList.reduce((total, product) => {
-        return total + product.number;
+        return total + product.quantity;
     }, 0);
     const totalPrice = productList.reduce((total, product) => {
-        return total + (product.price * product.number);
+        return total + (product.price * product.quantity);
     }, 0);
     return (
         <div>
@@ -21,13 +21,13 @@ const ShopCard = ({ productList }: { productList: Product[] }) => {
                             <div>
                                 <h5>{product.name}</h5>
                                 <div>
-                                    <span>{product.number}×</span>
+                                    <span>{product.quantity}×</span>
                                     <span>@ ${product.price.toFixed(2)}</span>
                                     <span>
                                         {new Intl.NumberFormat('en-US', {
                                             style: 'currency',
                                             currency: 'USD'
-                                        }).format(product.price * product.number)}
+                                        }).format(product.price * product.quantity)}
                                     </span>
                                 </div>
                                 <button type='button' aria-label='remove product'>
