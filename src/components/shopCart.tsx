@@ -1,17 +1,12 @@
 import emptyCart from '../assets/images/illustration-empty-cart.svg';
 import removeIcon from '../assets/images/icon-remove-item.svg';
 import tree from '../assets/images/icon-carbon-neutral.svg';
-import { type Product } from "./type";
+import { type Product, currencyFormatter } from "./type";
 
 interface ShopCartProps {
     productList: Product[];
     onRemoveItem: (productName: string) => void;
 }
-
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-});
 
 const ShopCart = ({ productList, onRemoveItem }: ShopCartProps) => {
     const itemNumber = productList.reduce((total, p) => total + p.quantity, 0);
