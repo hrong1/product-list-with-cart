@@ -6,11 +6,12 @@ import { type Product, currencyFormatter } from "./type";
 interface ShopCartProps {
     productList: Product[];
     onRemoveItem: (productName: string) => void;
+    totalPrice: number;
+    orderConfirmed: () => void;
 }
 
-const ShopCart = ({ productList, onRemoveItem }: ShopCartProps) => {
+const ShopCart = ({ productList, onRemoveItem , totalPrice, orderConfirmed}: ShopCartProps) => {
     const itemNumber = productList.reduce((total, p) => total + p.quantity, 0);
-    const totalPrice = productList.reduce((total, p) => total + (p.price * p.quantity), 0);
     
     return (
         <div>
@@ -47,7 +48,7 @@ const ShopCart = ({ productList, onRemoveItem }: ShopCartProps) => {
                         <img src={tree} alt=''/>
                         This is <b>carbon-neutral</b> delivery
                     </div>
-                    <button type='button'>
+                    <button type='button' onClick={orderConfirmed}>
                         Confirm Order
                     </button>
                 </div>

@@ -1,13 +1,15 @@
 import DessertCard from "./foodcard";
 import ShopCart from "./shopCart";
+import OrderConfirm from "./OrderConfirm";
 import { getList, type Product } from "./type";
 import { useState } from "react";
 
 
 const Container = () => {
     const [products, setProducts] = useState<Product[]>(getList());
+    const [isConfirmed, setOrderConfirmed] = useState(false);
     const cartItems = products.filter(p => p.quantity > 0);
-
+    const totalPrice = cartItems.reduce((total, p) => total + (p.price * p.quantity), 0);
     const handleUpdateQuantity = (productName: string, delta: number) => {
         setProducts(prevProducts => 
             prevProducts.map(product => {
@@ -30,6 +32,16 @@ const Container = () => {
             });
         });
     };
+
+    const handleConfirmOrder = (isConfirmed: boolean) =>{
+        setOrderConfirmed(isConfirmed);
+    }
+
+    const handleCartClear = () => {
+        setOrderConfirmed(false)
+        setProducts(getList());
+    }
+
     return (
         <div>
             <h1>Desserts</h1>
@@ -44,7 +56,18 @@ const Container = () => {
             </div>
             <ShopCart 
                 productList={cartItems}
-                onRemoveItem={(name) => handleRemove(name)}/>
+                onRemoveItem={(name) => handleRemove(name)}
+                totalPrice={totalPrice}
+                orderConfirmed={() => handleConfirmOrder(true)}
+            />
+            {isConfirmed && 
+                <OrderConfirm 
+                    OrderInfo={cartItems}
+                    closeMenu={handleCartClear}
+                    totalPrice={totalPrice}
+                />
+            }
+
         </div>
     )
 }

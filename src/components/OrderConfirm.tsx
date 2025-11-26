@@ -2,13 +2,13 @@ import { type Product, currencyFormatter } from "./type";
 import confirmed from '../assets/images/icon-order-confirmed.svg'
 
 interface ShopCartInfo {
-  isOpen: boolean;
-  OrderInfo: Product[];
-  closeMenu: () => void;
-  totalPrice: number;
+    OrderInfo: Product[];
+    closeMenu: () => void;
+    totalPrice: number;
 }
 
-const OrderConfirm = ({isOpen, OrderInfo, closeMenu, totalPrice} : ShopCartInfo) => {
+const OrderConfirm = ({OrderInfo, closeMenu, totalPrice} : ShopCartInfo) => {
+    
 
     return (
         <>
