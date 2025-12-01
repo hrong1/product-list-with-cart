@@ -36,7 +36,7 @@ const OrderConfirm = ({OrderInfo, closeMenu, totalPrice} : ShopCartInfo) => {
                         </div>
                     </ul>
                     
-                    <button className="bg-red text-white rounded-full w-full p-2" type="button" onClick={closeMenu}>
+                    <button className="bg-red text-white rounded-full w-full p-2 cursor-pointer hover:bg-rose-500" type="button" onClick={closeMenu}>
                         Start New Order
                     </button>
                 </div>

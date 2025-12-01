@@ -10,7 +10,7 @@ interface DessertCardProps {
 }
 
 const DessertCard = ({ product, onIncrement, onDecrement }: DessertCardProps) => {
-    const buttonClass = `flex p-2 px-2 absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rounded-full justify-between items-center w-30 min-w-fit`
+    const buttonClass = `flex p-2 px-2 absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rounded-full  items-center w-30 min-w-fit`
     const iconClass = `border border-white rounded-full p-0.5 w-3 h-3 cursor-pointer`
     const itemSelected = product.quantity > 0;
     return (
@@ -32,8 +32,8 @@ const DessertCard = ({ product, onIncrement, onDecrement }: DessertCardProps) =>
                 </picture>
                 { itemSelected ? (
                     <div 
-                        className={`${buttonClass} bg-red text-white text-sm`}>
-                        <button className={`${iconClass}`} onClick={onDecrement} type="button">
+                        className={`${buttonClass} justify-between bg-red text-white text-sm`}>
+                        <button className={`${iconClass} `} onClick={onDecrement} type="button">
                             <img className="w-full h-auto" src={Decrement} alt=""/>
                         </button>
                         {product.quantity}
@@ -43,10 +43,10 @@ const DessertCard = ({ product, onIncrement, onDecrement }: DessertCardProps) =>
                     </div>
                 ):(
                     <button 
-                        className={`${buttonClass} bg-white border border-rose-500 text-red-900 text-sm text-nowrap cursor-pointer`}
+                        className={`${buttonClass} justify-center bg-white border border-rose-500 text-red-900 text-sm text-nowrap cursor-pointer hover:border-red`}
                         onClick={onIncrement} 
                         type="button">
-                        <img className="mr-2" src={AddCart} alt=""/>
+                        <img className="mr-1" src={AddCart} alt=""/>
                         Add to Cart
                     </button>
                 )}

@@ -49,7 +49,7 @@ const ShopCart = ({ productList, onRemoveItem , totalPrice, orderConfirmed}: Sho
                         <img  src={tree} alt=''/>
                         <span className='ml-2 text-xs text-rose-900 text-nowrap'>This is a <b className='font-semibold'>carbon-neutral</b> delivery</span>
                     </div>
-                    <button className='bg-red text-white rounded-full w-full p-2' type='button' onClick={orderConfirmed}>
+                    <button className='bg-red text-white rounded-full w-full p-2 cursor-pointer hover:bg-rose-500' type='button' onClick={orderConfirmed}>
                         Confirm Order
                     </button>
                 </div>
