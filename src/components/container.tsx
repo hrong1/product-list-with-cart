@@ -43,23 +43,25 @@ const Container = () => {
     }
 
     return (
-        <div>
-            <h1>Desserts</h1>
-            <div>
-                {products.map(product => (
-                    <DessertCard 
-                        key={product.name}
-                        product={product}
-                        onIncrement={() => handleUpdateQuantity(product.name, 1)}
-                        onDecrement={() => handleUpdateQuantity(product.name, -1)}/>
-                ))}
+        <div className={`flex flex-col content-center-safe justify-center p-8 gap-5 bg-rose-50 min-h-screen ${isConfirmed ? "overflow-y-hidden" : ""}`}>
+            <h1 className="font-bold text-3xl text-rose-900">Desserts</h1>
+            <div className="md:grid md:grid-cols-[1fr_18rem] md:gap-5">
+                <div className="flex flex-col gap-5 md:grid md:grid-cols-3">
+                    {products.map(product => (
+                        <DessertCard 
+                            key={product.name}
+                            product={product}
+                            onIncrement={() => handleUpdateQuantity(product.name, 1)}
+                            onDecrement={() => handleUpdateQuantity(product.name, -1)}/>
+                    ))}
+                </div>
+                <ShopCart 
+                    productList={cartItems}
+                    onRemoveItem={(name) => handleRemove(name)}
+                    totalPrice={totalPrice}
+                    orderConfirmed={() => handleConfirmOrder(true)}
+                />
             </div>
-            <ShopCart 
-                productList={cartItems}
-                onRemoveItem={(name) => handleRemove(name)}
-                totalPrice={totalPrice}
-                orderConfirmed={() => handleConfirmOrder(true)}
-            />
             {isConfirmed && 
                 <OrderConfirm 
                     OrderInfo={cartItems}
@@ -67,7 +69,6 @@ const Container = () => {
                     totalPrice={totalPrice}
                 />
             }
-
         </div>
     )
 }

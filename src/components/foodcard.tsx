@@ -10,10 +10,13 @@ interface DessertCardProps {
 }
 
 const DessertCard = ({ product, onIncrement, onDecrement }: DessertCardProps) => {
+    const buttonClass = `flex p-2 px-2 absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rounded-full justify-between items-center w-30 min-w-fit`
+    const iconClass = `border border-white rounded-full p-0.5 w-3 h-3 cursor-pointer`
+    const itemSelected = product.quantity > 0;
     return (
-        <div>
-            <div>
-                <picture>
+        <div className="flex flex-col gap-5 w-auto">
+            <div className="relative flex flex-col gap-5 w-fit">
+                <picture className={`flex rounded-2xl overflow-hidden w-fit border-2 ${itemSelected ? 'border-red' : 'border-transparent'}`}>
                     <source
                     media="(min-width: 1024px)"
                     srcSet={product.image.desktop}
@@ -27,27 +30,31 @@ const DessertCard = ({ product, onIncrement, onDecrement }: DessertCardProps) =>
                     alt=""
                     />
                 </picture>
-                { product.quantity > 0 ? (
-                    <div>
-                        <button onClick={onDecrement} type="button">
-                            <img src={Decrement} alt=""/>
+                { itemSelected ? (
+                    <div 
+                        className={`${buttonClass} bg-red text-white text-sm`}>
+                        <button className={`${iconClass}`} onClick={onDecrement} type="button">
+                            <img className="w-full h-auto" src={Decrement} alt=""/>
                         </button>
                         {product.quantity}
-                        <button onClick={onIncrement} type="button">
+                        <button className={`${iconClass}`} onClick={onIncrement} type="button">
                             <img src={Increment} alt=""/>
                         </button>
                     </div>
                 ):(
-                    <button onClick={onIncrement} type="button">
-                        <img src={AddCart} alt=""/>
+                    <button 
+                        className={`${buttonClass} bg-white border border-rose-500 text-red-900 text-sm text-nowrap cursor-pointer`}
+                        onClick={onIncrement} 
+                        type="button">
+                        <img className="mr-2" src={AddCart} alt=""/>
                         Add to Cart
                     </button>
                 )}
             </div>
             <div>
-                <span>{product.category}</span>
-                <h5>{product.name}</h5>
-                <span>${product.price.toFixed(2)}</span>
+                <span className="text-xs text-rose-500">{product.category}</span>
+                <h5 className="font-semibold text-rose-900 text-sm">{product.name}</h5>
+                <span className="text-xs font-medium text-red">${product.price.toFixed(2)}</span>
             </div>
         </div>
     )
