@@ -14,9 +14,9 @@ const DessertCard = ({ product, onIncrement, onDecrement }: DessertCardProps) =>
     const iconClass = `border border-white rounded-full p-0.5 w-3 h-3 cursor-pointer`
     const itemSelected = product.quantity > 0;
     return (
-        <div className="flex flex-col gap-5 w-auto">
+        <div className="flex flex-col gap-5 w-full">
             <div className="relative flex flex-col gap-5 w-fit">
-                <picture className={`flex rounded-2xl overflow-hidden w-full h-full border-2 ${itemSelected ? 'border-red' : 'border-transparent'}`}>
+                <picture className={`flex rounded-2xl overflow-hidden w-full h-full border-2 object-cover ${itemSelected ? 'border-red' : 'border-transparent'}`}>
                     <source
                     media="(min-width: 1024px)"
                     srcSet={product.image.desktop}
