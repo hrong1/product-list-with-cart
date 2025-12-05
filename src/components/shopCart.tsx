@@ -55,7 +55,7 @@ const ShopCart = ({ productList, onRemoveItem , totalPrice, orderConfirmed}: Sho
                 </div>
             ) : (
                 <div className='w-full h-auto flex flex-col justify-center items-center mt-10 gap-5 text-center'>
-                    <img className='' src={emptyCart} alt=''/>
+                    <img className='aspect-square w-28' src={emptyCart} alt=''/>
                     <span className='text-rose-500 font-semibold'>Your added items will appear here</span>
                 </div>
             )}

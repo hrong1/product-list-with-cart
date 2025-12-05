@@ -15,7 +15,7 @@ const DessertCard = ({ product, onIncrement, onDecrement }: DessertCardProps) =>
     const itemSelected = product.quantity > 0;
     return (
         <div className="flex flex-col gap-5 w-full">
-            <div className="relative flex flex-col gap-5 w-fit">
+            <div className="relative flex flex-col gap-5 w-full">
                 <picture className={`flex rounded-2xl overflow-hidden w-full h-full border-2 object-cover aspect-4/3 md:aspect-square ${itemSelected ? 'border-red' : 'border-transparent'}`}>
                     <source
                     media="(min-width: 1024px)"
